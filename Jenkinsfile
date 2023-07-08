@@ -33,7 +33,7 @@ pipeline {
     stage('Push changes to GitHub') {
       steps {
         script {
-          withCredentials([usernamePassword(credentialsId: gitCredentials, usernameVariable: 'Rohit-Prabhakar-Rao', passwordVariable: 'Rohitr@o14')]) {
+          withCredentials([usernamePassword(credentialsId: gitCredentials, usernameVariable: 'Rohit-Prabhakar-Rao', passwordVariable: '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')]) {
             sh "git config user.name '${gitUsername}'"
             sh "git config user.email '${gitEmail}'"
             sh 'git add .'
