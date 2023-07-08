@@ -66,11 +66,12 @@ pipeline {
           def gitUsername = 'Rohit-Prabhakar-Rao'
           def gitEmail = 'rohitrao1411@gmail.com'
 
-          git config: "user.name '${gitUsername}'"
-          git config: "user.email '${gitEmail}'"
-          git add: '.'
-          git commit: "message: 'Automated build and run'"
-          git push: 'origin master'
+          sh 'git config user.name "your-username"'
+          sh 'git config user.email "your-email"'
+
+          sh 'git add .'
+          sh 'git commit -m "Automated build and run"'
+          sh 'git push origin master'
         }
       }
     }
