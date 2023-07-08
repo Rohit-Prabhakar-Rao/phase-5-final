@@ -33,8 +33,14 @@ pipeline {
     stage('Stop application') {
   steps {
     script {
-      sh 'pkill -f "java -jar target/Springbootapp-0.0.1-SNAPSHOT.jar"'
-      sh 'rm -f app.pid'
+      // Find the process ID of the Java application
+      def pid = sh(script: "pgrep -f 'java -jar target/Springbootapp-0.0.1-SNAPSHOT.jar'", returnStdout: true).trim()
+
+      // Stop the application by sending a termination signal
+      sh "kill ${pid}"
+
+      // Remove the PID file
+      sh 'rm app.pid'
     }
   }
 }
