@@ -23,13 +23,23 @@ pipeline {
   }
 }
 
+    // stage('Stop application') {
+    //   steps {
+    //     def pid = readFile('app.pid').trim()
+    //     sh "kill ${pid}"
+    //     sh 'rm -f app.pid'
+    //   }
+    // }
     stage('Stop application') {
-      steps {
-        def pid = readFile('app.pid').trim()
-        sh "kill ${pid}"
-        sh 'rm -f app.pid'
-      }
+  steps {
+    script {
+      def pid = sh(script: 'cat app.pid', returnStdout: true).trim()
+      sh "kill ${pid}"
+      sh 'rm -f app.pid'
     }
+  }
+}
+
 
     stage('Push changes to GitHub') {
       steps {
