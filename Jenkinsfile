@@ -39,27 +39,42 @@ pipeline {
   }
 }
 
+stage('Push changes to GitHub') {
+  steps {
+    script {
+      def gitUsername = 'Rohit-Prabhakar-Rao'
+      def gitEmail = 'rohitrao1411@gmail.com'
 
-
-    stage('Push changes to GitHub') {
-      steps {
-        script {
-          def gitUsername = 'Rohit-Prabhakar-Rao'
-          def gitEmail = 'rohitrao1411@gmail.com'
-
-          git config: "user.name '${gitUsername}'"
-          git config: "user.email '${gitEmail}'"
-          git add: '.'
-          git commit: "message: 'Automated build and run'"
-          git push: 'origin master'
-        }
-      }
+      git config user.name "${gitUsername}"
+      git config user.email "${gitEmail}"
+      git add .
+      git commit -m "Automated build and run"
+      git push origin master
     }
   }
+}
+
+
+    // stage('Push changes to GitHub') {
+    //   steps {
+    //     script {
+    //       def gitUsername = 'Rohit-Prabhakar-Rao'
+    //       def gitEmail = 'rohitrao1411@gmail.com'
+
+    //       git config: "user.name '${gitUsername}'"
+    //       git config: "user.email '${gitEmail}'"
+    //       git add: '.'
+    //       git commit: "message: 'Automated build and run'"
+    //       git push: 'origin master'
+    //     }
+    //   }
+    // }
+  
 
   post {
     always {
       sh 'rm -f app.pid'
     }
   }
+}
 }
