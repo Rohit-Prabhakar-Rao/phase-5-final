@@ -4,6 +4,7 @@ pipeline {
   environment {
     gitUsername = 'Rohit-Prabhakar-Rao'
     gitEmail = 'rohitrao1411@gmail.com'
+    gitPass = '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'
     // registryCredential = '30fe054d-46af-47e4-9e75-948aca898243'
     gitCredentials = credentials('githubCred')
     
@@ -33,7 +34,7 @@ pipeline {
     stage('Push changes to GitHub') {
       steps {
         script {
-          withCredentials([usernamePassword(credentialsId: gitCredentials, usernameVariable: 'Rohit-Prabhakar-Rao', passwordVariable: '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')]) {
+          withCredentials([usernamePassword(credentialsId: gitCredentials, usernameVariable: '${gitUsername}', passwordVariable: '${gitPass}')]) {
             sh "git config user.name '${gitUsername}'"
             sh "git config user.email '${gitEmail}'"
             sh 'git add .'
