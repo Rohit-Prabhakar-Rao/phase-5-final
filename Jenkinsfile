@@ -2,8 +2,8 @@ pipeline {
   agent any
 
   environment {
-    gitUsername = 'Rohit-Prabhakar-Rao'
-    gitEmail = 'rohitrao1411@gmail.com'
+    def gitUsername = 'Rohit-Prabhakar-Rao'
+    def gitEmail = 'rohitrao1411@gmail.com'
   }
 
   stages {
