@@ -30,21 +30,27 @@ pipeline {
         }
       }
     }
-
-    stage('Push changes to GitHub') {
+  stage('Push changes to GitHub') {
       steps {
-        script {
-          withCredentials([usernamePassword(credentialsId: gitCredentials, usernameVariable: gitUsername, passwordVariable: gitPass)]) {
-            sh "git config user.name '${gitUsername}'"
-            sh "git config user.email '${gitEmail}'"
-            sh 'git add .'
-            sh 'git commit -m "Automated build and run"'
-            sh 'git push origin master'
-          }
+        withCredentials([
+          usernamePassword(
+            credentialsId: '30fe054d-46af-47e4-9e75-948aca898243',
+            usernameVariable: 'Rohit-Prabhakar-Rao',
+            passwordVariable: 'Rohitr@o14'
+          )
+        ]) {
+          sh '''
+            git config --global user.name "Rohit-Prabhakar-Rao"
+            git config --global user.email "rohitrao1411@gmail.com"
+            git add .
+            git commit -m "Automated build and run"
+            git push origin master
+          '''
         }
       }
+    }
   }
-  }
+
 
   post {
     always {
