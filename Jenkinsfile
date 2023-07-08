@@ -5,7 +5,7 @@ pipeline {
     gitUsername = 'Rohit-Prabhakar-Rao'
     gitEmail = 'rohitrao1411@gmail.com'
     // registryCredential = '30fe054d-46af-47e4-9e75-948aca898243'
-    gitCredentials = credentials('30fe054d-46af-47e4-9e75-948aca898243')
+    gitCredentials = credentials('githubCred')
     
   }
 
