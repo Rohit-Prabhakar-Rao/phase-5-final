@@ -2,8 +2,8 @@ pipeline {
   agent any
 
   environment {
-    def gitUsername = 'Rohit-Prabhakar-Rao'
-    def gitEmail = 'rohitrao1411@gmail.com'
+    gitUsername = 'Rohit-Prabhakar-Rao'
+    gitEmail = 'rohitrao1411@gmail.com'
   }
 
   stages {
@@ -30,11 +30,8 @@ pipeline {
     stage('Push changes to GitHub') {
       steps {
         script {
-          sh "git config --global user.name '${gitUsername}'"
-          sh "git config --global user.email '${gitEmail}'"
-
           sh 'git add .'
-          sh 'git commit -m "Automated build and run"'
+          sh 'git commit --author="${gitUsername} <${gitEmail}>" -m "Automated build and run"'
           sh 'git push origin master'
         }
       }
