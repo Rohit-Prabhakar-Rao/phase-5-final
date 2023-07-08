@@ -11,11 +11,9 @@ pipeline {
   }
 
   stages {
-        stage('Clone repository') {
+       stage('Clone repository') {
       steps {
-        sshagent(credentials: ['sshkey']) {
-          sh 'git clone git@github.com:Rohit-Prabhakar-Rao/phase-5-final.git'
-        }
+        git credentialsId: 'sshkey', url: 'git@github.com:yourusername/your-repo.git'
       }
     }
 
