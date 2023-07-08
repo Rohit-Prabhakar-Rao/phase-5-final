@@ -6,7 +6,7 @@ pipeline {
     gitEmail = 'rohitrao1411@gmail.com'
     gitPass = 'Rohitr@o14'
     // registryCredential = '30fe054d-46af-47e4-9e75-948aca898243'
-    gitCredentials = credentials('githubCred')
+    gitCredentials = credentials('30fe054d-46af-47e4-9e75-948aca898243')
     
   }
 
