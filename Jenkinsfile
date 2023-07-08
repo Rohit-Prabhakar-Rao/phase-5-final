@@ -12,6 +12,19 @@ pipeline {
       steps {
         // sh 'mvn clean package'
         sh 'java -jar Springbootapp-0.0.1-SNAPSHOT.jar'
+        sh 'echo $! > app.pid'
+      }
+    }
+     stage('Stop application') {
+      steps {
+        // Read the process ID from the file
+        def pid = readFile('app.pid').trim()
+
+        // Stop the application by sending a termination signal
+        sh "kill ${pid}"
+
+        // Remove the PID file
+        sh 'rm app.pid'
       }
     }
 
