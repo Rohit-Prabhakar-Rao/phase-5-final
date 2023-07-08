@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Clone repository') {
       steps {
-        git branch: 'master', url: 'https://github.com/Rohit-Prabhakar-Rao/phase-5-final.git'
+        git 'https://github.com/Rohit-Prabhakar-Rao/phase-5-final.git'
       }
     }
 
