@@ -13,7 +13,7 @@ pipeline {
   stages {
        stage('Clone repository') {
       steps {
-        git credentialsId: 'sshkey', url: 'git@github.com:yourusername/your-repo.git'
+        git credentialsId: 'sshkey', url: 'git@github.com:Rohit-Prabhakar-Rao/phase-5-final.git'
       }
     }
 
