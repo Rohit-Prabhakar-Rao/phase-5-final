@@ -19,7 +19,7 @@ pipeline {
     stage('Build and run application') {
   steps {
     // sh 'mvn clean package'
-    sh 'java -jar myapp.jar & echo $! > ./pid.file &'
+    sh 'java -jar Springbootapp-0.0.1-SNAPSHOT.jar & echo $! > ./pid.file &'
   }
 }
 
