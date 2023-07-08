@@ -1,6 +1,10 @@
 pipeline {
   agent any
-
+environment{
+   def gitUsername = 'Rohit-Prabhakar-Rao'
+    def gitEmail = 'rohitrao1411@gmail.com'
+  
+}
   stages {
     stage('Clone repository') {
       steps {
@@ -63,12 +67,12 @@ pipeline {
     stage('Push changes to GitHub') {
       steps {
         script {
-          def gitUsername = 'Rohit-Prabhakar-Rao'
-          def gitEmail = 'rohitrao1411@gmail.com'
+          // def gitUsername = 'Rohit-Prabhakar-Rao'
+          // def gitEmail = 'rohitrao1411@gmail.com'
 
-          sh 'git config --global user.name "Rohit-Prabhakar-Rao"'
+          sh 'git config --global user.name "${gitUsername}"'
           // git config --global user.email "you@example.com"
-          sh 'git config --global user.email "rohitrao1411@gmail.com"'
+          sh 'git config --global user.email "${gitEmail}"'
 
           sh 'git add .'
           sh 'git commit -m "Automated build and run"'
