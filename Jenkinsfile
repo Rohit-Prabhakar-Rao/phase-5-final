@@ -8,14 +8,20 @@ pipeline {
       }
     }
 
+    // stage('Build and run application') {
+    //   steps {
+    //     sh 'mvn clean package'
+    //     sh 'java -jar target/Springbootapp-0.0.1-SNAPSHOT.jar'
+    //     sh 'ps -ef | grep "java -jar target/Springbootapp-0.0.1-SNAPSHOT.jar" | grep -v grep | awk \'{print $2}\' > app.pid'
+    //     def pid = readFile('app.pid').trim()
+    //   }
+    // }
     stage('Build and run application') {
-      steps {
-        sh 'mvn clean package'
-        sh 'java -jar target/Springbootapp-0.0.1-SNAPSHOT.jar'
-        sh 'ps -ef | grep "java -jar target/Springbootapp-0.0.1-SNAPSHOT.jar" | grep -v grep | awk \'{print $2}\' > app.pid'
-        def pid = readFile('app.pid').trim()
-      }
-    }
+  steps {
+    // sh 'mvn clean package'
+    sh 'nohup java -jar target/Springbootapp-0.0.1-SNAPSHOT.jar > /dev/null 2>&1 & echo $! > app.pid'
+  }
+}
 
     stage('Stop application') {
       steps {
