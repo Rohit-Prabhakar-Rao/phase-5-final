@@ -33,12 +33,12 @@ pipeline {
     stage('Stop application') {
   steps {
     script {
-      def pid = sh(script: 'cat app.pid', returnStdout: true).trim()
-      sh "kill ${pid}"
+      sh 'pkill -f "java -jar target/Springbootapp-0.0.1-SNAPSHOT.jar"'
       sh 'rm -f app.pid'
     }
   }
 }
+
 
 
     stage('Push changes to GitHub') {
