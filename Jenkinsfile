@@ -66,8 +66,9 @@ pipeline {
           def gitUsername = 'Rohit-Prabhakar-Rao'
           def gitEmail = 'rohitrao1411@gmail.com'
 
-          sh 'git config user.name "${gitUsername}"'
-          sh 'git config user.email "${gitEmail}"'
+          sh 'git config --global user.email "${gitUsername}"'
+          // git config --global user.email "you@example.com"
+          sh 'git config --global user.email "${gitEmail}"'
 
           sh 'git add .'
           sh 'git commit -m "Automated build and run"'
