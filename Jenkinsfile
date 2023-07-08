@@ -10,24 +10,18 @@ pipeline {
 
     stage('Build and run application') {
       steps {
-        // sh 'mvn clean package'
-        sh 'java -jar Springbootapp-0.0.1-SNAPSHOT.jar'
-        // sh 'echo $! > app.pid'
-        sh 'ps -ef | grep "java -jar Springbootapp-0.0.1-SNAPSHOT.jar" | grep -v grep | awk \'{print $2}\' > app.pid'
-
+        sh 'mvn clean package'
+        sh 'java -jar target/Springbootapp-0.0.1-SNAPSHOT.jar'
+        sh 'ps -ef | grep "java -jar target/Springbootapp-0.0.1-SNAPSHOT.jar" | grep -v grep | awk \'{print $2}\' > app.pid'
+        def pid = readFile('app.pid').trim()
       }
     }
 
-     stage('Stop application') {
+    stage('Stop application') {
       steps {
-        // Read the process ID from the file
-        def pid = sh(script: 'cat app.pid', returnStdout: true).trim()
-
-        // Stop the application by sending a termination signal
+        def pid = readFile('app.pid').trim()
         sh "kill ${pid}"
-
-        // Remove the PID file
-        sh 'rm app.pid'
+        sh 'rm -f app.pid'
       }
     }
 
@@ -44,6 +38,12 @@ pipeline {
           git push: 'origin master'
         }
       }
+    }
+  }
+
+  post {
+    always {
+      sh 'rm -f app.pid'
     }
   }
 }
