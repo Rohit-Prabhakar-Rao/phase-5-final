@@ -19,7 +19,7 @@ pipeline {
     stage('Build and run application') {
   steps {
     // sh 'mvn clean package'
-    sh 'nohup java -jar target/Springbootapp-0.0.1-SNAPSHOT.jar > /dev/null 2>&1 & echo $! > app.pid'
+    sh 'java -jar myapp.jar & echo $! > ./pid.file &'
   }
 }
 
@@ -34,10 +34,10 @@ pipeline {
   steps {
     script {
       // Find the process ID of the Java application
-       def pid = sh(script: "pgrep -f 'java -jar target/Springbootapp-0.0.1-SNAPSHOT.jar' | grep -v grep", returnStdout: true).trim()
-
+       // def pid = sh(script: "pgrep -f 'java -jar target/Springbootapp-0.0.1-SNAPSHOT.jar' | grep -v grep", returnStdout: true).trim()
+      sh 'kill $(cat ./pid.file)'
       // Stop the application by sending a termination signal
-      sh "kill ${pid}"
+      // sh "kill ${pid}"
 
       // Remove the PID file
       sh 'rm app.pid'
