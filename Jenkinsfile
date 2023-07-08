@@ -40,7 +40,7 @@ pipeline {
       // sh "kill ${pid}"
 
       // Remove the PID file
-      sh 'rm app.pid'
+      // sh 'rm app.pid'
     }
   }
 }
@@ -76,10 +76,10 @@ stage('Push changes to GitHub') {
     // }
   
   }
-  post {
-    always {
-      sh 'rm -f app.pid'
-    }
-  }
+  // post {
+  //   always {
+  //     sh 'rm -f app.pid'
+  //   }
+  // }
 }
 
