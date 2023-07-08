@@ -34,9 +34,9 @@ pipeline {
       steps {
         withCredentials([
           usernamePassword(
-            credentialsId: '30fe054d-46af-47e4-9e75-948aca898243',
+            credentialsId: 'githubCred',
             usernameVariable: 'Rohit-Prabhakar-Rao',
-            passwordVariable: 'Rohitr@o14'
+            passwordVariable: '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'
           )
         ]) {
           sh '''
