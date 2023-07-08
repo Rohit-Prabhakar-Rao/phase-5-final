@@ -10,7 +10,7 @@ pipeline {
 
     stage('Build and run application') {
       steps {
-        sh 'mvn clean package'
+        // sh 'mvn clean package'
         sh 'java -jar Springbootapp-0.0.1-SNAPSHOT.jar'
       }
     }
