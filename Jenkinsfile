@@ -31,7 +31,9 @@ pipeline {
       steps {
         script {
           sh 'git add .'
-          sh 'git commit --author="${gitUsername} <${gitEmail}>" -m "Automated build and run"'
+          sh "git config --local user.name '${gitUsername}'"
+          sh "git config --local user.email '${gitEmail}'"
+          sh 'git commit -m "Automated build and run"'
           sh 'git push origin master'
         }
       }
