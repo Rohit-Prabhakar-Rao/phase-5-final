@@ -24,7 +24,7 @@ pipeline {
     stage('Build and run application') {
       steps {
         // sh 'java -jar Springbootapp-0.0.1-SNAPSHOT.jar & echo $! > ./pid.file &'
-        sh 'java -jar Springbootapp-0.0.1-SNAPSHOT.jar > output.log 2>&1 &'
+        sh 'java -jar Springbootapp-0.0.1-SNAPSHOT.jar'
         sleep(time: 1, unit: 'MINUTES')
         sh 'echo $! > ./pid.file'
       
