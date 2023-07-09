@@ -57,7 +57,7 @@ pipeline {
 
   post {
     always {
-      sh 'rm -f app.pid'
+      sh 'rm -f pid.file'
     }
   }
 }
