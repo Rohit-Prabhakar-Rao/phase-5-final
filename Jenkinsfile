@@ -46,12 +46,14 @@ pipeline {
         }
       }
     }
-    
-  stage('Push changes to GitHub') {
-      steps {
-        sh 'echo "Finished"'
-      }
-    }
+    stage("Push to Git Repository") {
+            steps {
+                withCredentials([gitUsernamePassword(credentialsId: 'githubCred', gitToolName: 'Default')]) {
+                    sh "git push -u origin master"
+                }
+            }
+        }
+  
   }
 
 
