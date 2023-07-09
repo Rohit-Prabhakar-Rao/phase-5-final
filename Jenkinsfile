@@ -22,7 +22,7 @@ pipeline {
     stage('Build and run application') {
       steps {
         sh 'java -jar Springbootapp-0.0.1-SNAPSHOT.jar & echo $! > ./pid.file &'
-        sh '
+      
       }
     }
       stage('Buffer Time') {
