@@ -15,7 +15,9 @@ pipeline {
       steps {
         // git credentialsId: 'sshkey', url: 'git@github.com:Rohit-Prabhakar-Rao/phase-5-final.git'
         // sh 'git clone https://github.com/Rohit-Prabhakar-Rao/phase-5-final.git'
-        git branch: 'master', url: 'https://github.com/Rohit-Prabhakar-Rao/phase-5-final-project.git'
+        // git branch: 'master', url: 'https://github.com/Rohit-Prabhakar-Rao/phase-5-final-project.git'
+        git 'https://github.com/Rohit-Prabhakar-Rao/phase-5-final.git'
+
 
       }
     }
