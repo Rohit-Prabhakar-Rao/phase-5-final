@@ -19,44 +19,38 @@ pipeline {
     }
 
 
-  //   stage('Build and run application') {
-  //     steps {
-  //       sh 'java -jar Springbootapp-0.0.1-SNAPSHOT.jar & echo $! > ./pid.file &'
-  //     }
-  //   }
+    stage('Build and run application') {
+      steps {
+        sh 'java -jar Springbootapp-0.0.1-SNAPSHOT.jar & echo $! > ./pid.file &'
+        sh '
+      }
+    }
+      stage('Buffer Time') {
+            steps {
+                // Add a delay of 5 minutes (adjust as needed)
+                sleep(time: 1, unit: 'MINUTES')
+            }
+        }
 
-  //   stage('Stop application') {
-  //     steps {
-  //       script {
-  //         sh 'kill -9 $(cat ./pid.file)'
-  //       }
-  //     }
-  //   }
-  // stage('Push changes to GitHub') {
-  //     steps {
-  //       withCredentials([
-  //         usernamePassword(
-  //           credentialsId: 'githubCred',
-  //           usernameVariable: 'Rohit-Prabhakar-Rao',
-  //           passwordVariable: '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'
-  //         )
-  //       ]) {
-  //         sh '''
-  //           git config --global user.name "Rohit-Prabhakar-Rao"
-  //           git config --global user.email "rohitrao1411@gmail.com"
-  //           git add .
-  //           git commit -m "Automated build and run"
-  //           git push origin master
-  //         '''
-  //       }
-  //     }
-  //   }
+    stage('Stop application') {
+      steps {
+        script {
+          sh 'kill -9 $(cat ./pid.file)'
+        }
+      }
+    }
+    
+  stage('Push changes to GitHub') {
+      steps {
+        sh 'echo "Finished"'
+      }
+    }
   }
 
 
-  // post {
-  //   always {
-  //     sh 'rm -f app.pid'
-  //   }
-  // }
+  post {
+    always {
+      sh 'rm -f app.pid'
+    }
+  }
 }
