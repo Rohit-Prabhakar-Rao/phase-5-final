@@ -27,7 +27,7 @@ pipeline {
       steps {
         // sh 'java -jar Springbootapp-0.0.1-SNAPSHOT.jar & echo $! > ./pid.file &'
         sh 'java -jar Springbootapp-0.0.1-SNAPSHOT.jar'
-        sleep(time: 1, unit: 'MINUTES')
+        // sleep(time: 1, unit: 'MINUTES')
         sh 'echo $! > ./pid.file'
       
       }
